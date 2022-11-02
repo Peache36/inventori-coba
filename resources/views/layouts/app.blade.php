@@ -35,16 +35,34 @@
   </div>
 
   <!-- Navbar -->
-  <nav class="main-header navbar navbar-expand navbar-white navbar-light">
-    <div class="user-panel mt-3 pb-3 d-flex ">
-      <div class="image">
-        <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
-      </div>
-      <div class="info">
-        <a href="#" class="d-block">Alexander Pierce</a>
-      </div>
-    </div>
-  </nav>
+  
+  <header class="topbar" data-navbarbg="skin6">
+    <nav class="navbar navbar-expand navbar-white navbar-light">
+      <div class="navbar-collapse collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav float-left mr-auto ml-3 pl-1">
+
+        </ul>
+        <ul class="navbar-nav float-right">
+          <a a class="nav-link dropdown-toggle" href="javascript:void(0)" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image" class="rounded-circle" width="40">
+            <span class="ml-2 d-none d-lg-inline-block"><span>Hello,</span> <span class="text-dark">{{ \Illuminate\Support\Str::words(auth()->user()->name, 2, '') }}</span> <i data-feather="chevron-down" class="svg-icon"></i></span>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right user-dd animated flipInY">
+            <div class="dropdown-divider"></div>
+            {{-- <a class="dropdown-item" href="{{ route('comittee.settings') }}"><i data-feather="settings" class="svg-icon mr-2 ml-1"></i>
+                Account Setting</a>
+            <div class="dropdown-divider"></div> --}}
+            <a class="dropdown-item" href="{{ route('auth.logout') }}" onclick="event.preventDefault();
+                    document.getElementById('logout-form').submit();"><i data-feather="power" class="svg-icon mr-2 ml-1"></i>
+                Logout</a>
+    
+            <form id="logout-form" action="{{ route('auth.logout') }}" method="POST" class="d-none">
+                @csrf
+            </form>
+        </div>
+        </ul>
+    </nav>
+  </header>
 
 
   <!-- Main Sidebar Container -->
@@ -58,31 +76,60 @@
     <!-- Sidebar -->
     <div class="sidebar">
       <!-- Sidebar Menu -->
-      <nav class="mt-2">
-        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
-          <li class="nav-item">
-            <a href="#" class="nav-link active">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
-              <p>
-                Dashboard
-              </p>
-            </a>
-          <li class="nav-item">
-            <a href="#" class="nav-link active">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
-              <p>
-                B
-              </p>
-            </a>
-          <li class="nav-item">
-            <a href="#" class="nav-link active">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
-              <p>
-                C
-              </p>
-            </a>
+      <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+        <li class="nav-small-cap mt-2"><span class="hide-menu text-white ">Dashboard</span></li>
+        <li class="nav-item">
+          <a href="#" class="nav-link ">
+            <i class="nav-icon fas fa-tachometer-alt"></i>
+            <p>
+              Dashboard
+            </p>
+          </a>
+        </li>
+        <li class="nav-small-cap mt-2"><span class="hide-menu text-white ">User Panel</span></li>
+        <li class="nav-item">
+          <a href="#" class="nav-link ">
+            <i class="nav-icon fas fa-tachometer-alt"></i>
+            <p>
+              User
+            </p>
+          </a>
+        </li>
+        <li class="nav-small-cap mt-2"><span class="hide-menu text-white ">Panel Barang</span></li>
+        <li class="nav-item menu">
+          <a href="#" class="nav-link ">
+            <i class="nav-icon fas fa-tachometer-alt"></i>
+            <p>
+              List
+              <i class="right fas fa-angle-left"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="./index.html" class="nav-link ">
+                <i class="far fa-circle nav-icon"></i>
+                <p></p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="./index2.html" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Dashboard v2</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="./index3.html" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Dashboard v3</p>
+              </a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+
+            
+              
+
   
       <!-- /.sidebar-menu -->
     </div>
