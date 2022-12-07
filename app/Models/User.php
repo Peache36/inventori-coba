@@ -7,6 +7,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\Barang;
+use App\Models\Riwayat;
+use App\Models\Opname;
 
 class User extends Authenticatable
 {
@@ -21,6 +24,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'division',
         'avatar',
     ];
 
@@ -42,4 +46,19 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function barang()
+    {
+        return $this->hasMany(Barang::class);
+    }
+
+    public function riwayat()
+    {
+        return $this->hasMany(Riwayat::class);
+    }
+
+    public function opname()
+    {
+        return $this->hasMany(Opname::class);
+    }
 }

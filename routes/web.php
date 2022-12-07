@@ -1,7 +1,15 @@
 <?php
 
+use App\Http\Controllers\BarangController;
+use App\Http\Controllers\BarangMasukController;
+use App\Http\Controllers\BarangKeluarController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\RiwayatController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\OpnameController;
+use App\Http\Controllers\UserController;
+use App\Models\Barang_keluar;
+use App\Models\Barang_masuk;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,5 +29,14 @@ Route::post('/login', [LoginController::class, 'authenticate'])->name('auth.logi
 Route::post('/logout', [LoginController::class, 'logout'])->name('auth.logout');
 
 Route::middleware(['auth'])->group(function () {
-    Route::get("/dashboard", [DashboardController::class, 'index']);
+    Route::get("/dashboard", [DashboardController::class, 'index'])->name('dashborard.index');
+});
+
+Route::middleware(['auth'])->group(function () {
+    Route::resource("/barang", BarangController::class);
+    Route::resource("/barang-masuk", BarangMasukController::class);
+    Route::resource("/barang-keluar", BarangKeluarController::class);
+    Route::resource("/user", UserController::class);
+    Route::resource("/riwayat", RiwayatController::class);
+    Route::resource("/opname", OpnameController::class);
 });

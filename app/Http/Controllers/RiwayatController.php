@@ -36,7 +36,19 @@ class RiwayatController extends Controller
      */
     public function store(StoreRiwayatRequest $request)
     {
-        //
+        @dd($request);
+        try {
+            Riwayat::created([
+                'barang_id' => $request->id,
+                'user_id' => auth()->user()->id,
+                'jenis' => 'barang',
+                'keterangan' => " ditambahkan oleh ",
+            ]);
+
+            return redirect()->route('barang.index')->with('success', 'List Barang berhasil ditambahkan');
+        } catch (\Throwable $th) {
+            return redirect()->route('barang.create')->with('error', 'Ada yang salah, pastikan kembali ' . $th->getMessage());
+        }
     }
 
     /**

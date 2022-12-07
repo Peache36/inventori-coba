@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Barang;
+use App\Models\Barang_keluar;
+use App\Models\Barang_masuk;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -14,9 +18,17 @@ class DashboardController extends Controller
     public function index()
     {
         $title = "Dashboard";
+        $data_user = User::all();
+        $data_masuk = Barang_masuk::all();
+        $data_keluar = Barang_keluar::all();
+        $list_barang = Barang::all();
 
         return view('dashboard.index', [
-            'title' => $title
+            'title' => $title,
+            'data_user' => $data_user,
+            'data_masuk' => $data_masuk,
+            'data_keluar' => $data_keluar,
+            'list_barang' => $list_barang,
         ]);
     }
 

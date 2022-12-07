@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Opname;
-use Illuminate\Http\Request;
+use App\Models\Barang_masuk;
 use App\Models\Barang;
+use App\Models\Riwayat;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class OpnameController extends Controller
+
+class BarangMasukController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,9 +18,9 @@ class OpnameController extends Controller
      */
     public function index()
     {
-        $title = "Opname";
-        $data_barang = Opname::all();
-        return view("opname.index", [
+        $title = "List Barang Masuk";
+        $data_barang = Barang_masuk::all();
+        return view("barang_masuk.index", [
             "title" => $title,
             "data_barang" => $data_barang
         ]);
@@ -31,10 +33,10 @@ class OpnameController extends Controller
      */
     public function create()
     {
-        $title = 'Add Stock Opname';
+        $title = 'Add Barang Masuk';
         $data_barang = Barang::all();
 
-        return view("opname.add", [
+        return view("barang_masuk.add", [
             'title' => $title,
             'data_barang' => $data_barang,
         ]);
@@ -48,20 +50,18 @@ class OpnameController extends Controller
      */
     public function store(Request $request)
     {
-        $barang = Barang::where('kode_barang', $request->kode_barang)->firstorfail();
 
         try {
-
-            Opname::create([
-                'barang_id' => $barang->id,
+            Barang_masuk::create([
+                'barang_id' => $request->kode_barang,
                 'vendor' => $request->vendor,
-                'stock' => $request->stock,
-                'catatan' => $request->catatan,
+                'qty' => $request->jumlah,
+                'disetujui_oleh' => $request->setujui,
                 'user_id' => auth()->user()->id,
             ]);
 
             $riwayat = [
-                'keterangan' => $request->stock . $request->nama_barang . "opname masuk ditambahkan oleh " . auth()->user()->name,
+                'keterangan' => $request->jumlah . $request->nama_barang . " masuk ditambahkan oleh " . auth()->user()->name,
                 'created_at' => now(),
                 'updated_at' => now(),
             ];
@@ -69,36 +69,38 @@ class OpnameController extends Controller
             DB::table('riwayat')->insert($riwayat);
             DB::commit();
 
-            return redirect()->route("opname.index")->with('success', 'List Opname berhasil ditambahkan');
+            return redirect()->route("barang-masuk.index")->with('success', 'List Barang berhasil ditambahkan');
         } catch (\Throwable $th) {
-            return redirect()->route('opname.create')->with('error', 'Ada yang salah, pastikan kembali ' . $th->getMessage());
+            return redirect()->route('barang-masuk.create')->with('error', 'Ada yang salah, pastikan kembali ' . $th->getMessage());
         }
     }
+
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Opname  $opname
+     * @param  \App\Models\Barang_masuk  $barang_masuk
      * @return \Illuminate\Http\Response
      */
-    public function show(Opname $opname)
+    public function show(Barang_masuk $barang_masuk)
     {
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Opname  $opname
+     * @param  \App\Models\Barang_masuk  $barang_masuk
      * @return \Illuminate\Http\Response
      */
-    public function edit(Opname $opname)
+    public function edit(Barang_masuk $barang_masuk)
     {
-        $title = 'Edit Barang Opname';
+        $title = 'Edit Barang Masuk';
         $data_barang = Barang::all();
 
-        return view('opname.edit', [
+        return view('barang_masuk.edit', [
             'title' => $title,
-            'data_barang' => $opname,
+            'data_barang' => $barang_masuk,
             'data_masuk' => $data_barang,
         ]);
     }
@@ -107,18 +109,21 @@ class OpnameController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Opname  $opname
+     * @param  \App\Models\Barang_masuk  $barang_masuk
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Opname $opname)
+    public function update(Request $request, Barang_masuk $barang_masuk)
     {
-        try {
-            $opname->barang_id = $request->barang_id;
-            $opname->stock = $request->stock;
-            $opname->catatan = $request->catatan;
-            $opname->update();
 
-            return redirect()->route('opname.index')->with('success', 'List barang masuk berhasil diupdate.');
+        try {
+            $barang_masuk->vendor = $request->vendor;
+            $barang_masuk->barang_id = $request->barang_id;
+            $barang_masuk->qty = $request->qty;
+            $barang_masuk->disetujui_oleh = $request->setujui;
+            $barang_masuk->update();
+
+
+            return redirect()->route('barang-masuk.index')->with('success', 'List barang masuk berhasil diupdate.');
         } catch (\Throwable $th) {
             return redirect()->back()->with('error', 'Something went wrong. Make sure the data you have entered is correct and there is no duplication.');
         }
@@ -127,12 +132,12 @@ class OpnameController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Opname  $opname
+     * @param  \App\Models\Barang_masuk  $barang_masuk
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Opname $opname)
+    public function destroy(Barang_masuk $barang_masuk)
     {
-        $opname->delete();
-        return redirect()->route('opname.index')->with('success', 'List opname berhasil dihapus.');
+        $barang_masuk->delete();
+        return redirect()->route('barang-masuk.index')->with('success', 'List barang masuk berhasil dihapus.');
     }
 }

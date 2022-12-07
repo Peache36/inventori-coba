@@ -4,25 +4,16 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Barang;
 
-class Opname extends Model
+class Barang_keluar extends Model
 {
     use HasFactory;
 
-    protected $table = "opname";
+    protected $table = "barang_keluar";
 
     protected $guarded = ['id'];
 
-
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
-
-    public function riwayat()
-    {
-        return $this->hasMany(Riwayat::class);
-    }
 
 
     public function barangs()

@@ -13,12 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('opname', function (Blueprint $table) {
+        Schema::create('barang_masuk', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('barang_id');
             $table->bigInteger('user_id')->unsigned();
-            $table->integer('stock');
-            $table->string('catatan');
+            $table->string('vendor');
+            $table->integer('qty');
+            $table->string('disetujui_oleh');
             $table->timestamps();
 
             $table->foreign('user_id')
@@ -38,6 +39,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('opname');
+        Schema::dropIfExists('barang_masuk');
     }
 };

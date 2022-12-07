@@ -15,18 +15,8 @@ return new class extends Migration
     {
         Schema::create('riwayat', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('barang_id')->unsigned();
-            $table->bigInteger('user_id')->unsigned();
-            $table->enum('jenis', ['barang', 'riwayat']);
+            $table->string('keterangan');
             $table->timestamps();
-
-            $table->foreign('user_id')
-                ->references('id')
-                ->on('users');
-
-            $table->foreign('barang_id')
-                ->references('id')
-                ->on('barang');
         });
     }
 
