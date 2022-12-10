@@ -26,6 +26,8 @@
                         <div class="col-6 d-inline-block">
                           <small class="m-0">Nomor DO </small>
                           <p class="mb-2">{{ $data_barang->no_do }}</p>  
+                          <small class="m-0">Nomor Customer </small>
+                          <p class="mb-2">{{ $data_barang->customer }}</p>  
                           <small class="m-0">Name Barang </small>
                           <p class="mb-2">{{ $data_barang->barangs->nama_barang }}</p>  
                           <small class="m-0">Jumlah Barang </small>

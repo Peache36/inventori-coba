@@ -28,6 +28,12 @@ class UsersSeeder extends Seeder
                 'password' => bcrypt('password'),
                 'division' => 'admin',
             ],
+            [
+                'name' => 'coba',
+                'email' => 'coba@gmail.com',
+                'password' => bcrypt('12345'),
+                'division' => 'admin',
+            ],
         ];
 
         foreach ($data as $row) {

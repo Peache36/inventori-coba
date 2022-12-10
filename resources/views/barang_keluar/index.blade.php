@@ -30,6 +30,8 @@
                                 <tr class="text-center">
                                     <th width="15px">No.</th>
                                     <th class="text-center">Tanggal Keluar</th>
+                                    <th class="text-center">No DO</th>
+                                    <th class="text-center">Customer</th>
                                     <th class="text-center">Nama Barang</th>
                                     <th class="text-center">Jumlah</th>
                                     <th class="text-center">Actions</th>
@@ -40,6 +42,8 @@
                                     <tr>
                                         <td class="text text-center">{{ $loop->iteration }}</td>
                                         <td class="text justify-content-center">{{ $data_barang->created_at ? \Carbon\Carbon::parse($data_barang->created_at)->format('D, d M Y H:i:s') : '-' }}</td>
+                                        <td class="text justify-content-center">{{ $data_barang->no_do }}</td>
+                                        <td class="text justify-content-center">{{ $data_barang->customer }}</td>
                                         <td class="text justify-content-center">{{ $data_barang->barangs->nama_barang }}</td>
                                         <td class="text justify-content-center">{{ $data_barang->qty }}</td>
                                         <td class="text-center">

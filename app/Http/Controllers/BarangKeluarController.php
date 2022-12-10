@@ -49,24 +49,16 @@ class BarangKeluarController extends Controller
      */
     public function store(Request $request)
     {
-        $total = Barang_keluar::all()->count();
-
-
         try {
-            $coba = $request;
-            $tot = count($request->qty);
+            Barang_keluar::create([
+                'barang_id' => $request->kode_barang,
+                'customer' => $request->customer,
+                'qty' => $request->qty,
+                'disetujui_oleh' => $request->setujui,
+                'no_do' => $request->no_do,
+                'user_id' => auth()->user()->id,
+            ]);
 
-
-            for ($u = 0; $u < $tot; $u++) {
-                Barang_keluar::create([
-                    'barang_id' => $coba->kode_barang[$u],
-                    'qty' => $coba->qty[$u],
-                    'group_id' => $total + 1,
-                    'disetujui_oleh' => "halo",
-                    'no_do' => $coba->no_do[$u],
-                    'user_id' => auth()->user()->id,
-                ]);
-            }
 
             // Barang_keluar::create([
             //     'barang_id' => $request->kode_barang[0],
