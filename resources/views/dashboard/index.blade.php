@@ -23,7 +23,6 @@
           <div class="small-box bg-info">
             <div class="inner">
               <h3>{{ $data_user->count() }}</h3>
-
               <p>List User</p>
             </div>
             <div class="icon">
@@ -77,6 +76,45 @@
             <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
           </div>
         </div>
+        {{-- TABEL PEMBANDING --}}
+        <div class="col-md-12">
+          <div class="card">
+              <div class="card-body">
+                  <table id="table" class="table table-bordered table-hover">
+                      <thead>
+                          <tr class="text-center">
+                              <th width="15px">No.</th>
+                              <th class="text-center">Nama Barang</th>
+                              <th class="text-center">Jumlah Barang Keluar</th>
+                              <th class="text-center">Jumlah Barang Opname</th>
+                              <th class="text-center">Selisih</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                        <?php $i=0?>
+                        @foreach ($list_barang as $list_barangs )
+                        <tr>
+                          <?php $a= $total_keluar[$i]->sum ?? 0?>
+                          <?php $b= $total_opname[$i]->sum ?? 0?>
+                          <?php $c = $b - $a?>
+                          <td class="text text-center">{{ $loop->iteration }}</td>
+                          <td class="text justify-content-center">{{ $list_barangs->nama_barang }}</td>
+                          <td class="text justify-content-center">{{ $total_keluar[$i]->sum ?? 0 }}</td>
+                          <td class="text justify-content-center">{{ $total_opname[$i]->sum ?? 0}}</td>
+                          @if ($c < 0)
+                            <td class="text justify-content-center text-danger">{{ $c }}</td>
+                          @else
+                            <td class="text justify-content-center text-success">{{ $c }}</td>
+                          @endif
+                        </tr>
+                        <?php $i++?>
+                        <?php $c = 0?>
+                        @endforeach
+                      </tbody>
+                  </table>
+              </div>
+          </div>
+      </div>
         <!-- ./col -->
       </div>
       <!-- /.row -->

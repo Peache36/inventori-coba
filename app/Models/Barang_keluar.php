@@ -21,4 +21,9 @@ class Barang_keluar extends Model
         return $this->belongsTo(Barang::class, 'barang_id');
         // return $this->hasMany(Barang::class);
     }
+
+    public function opname()
+    {
+        return $this->hasOne(Opname::class, 'barang_id');
+    }
 }

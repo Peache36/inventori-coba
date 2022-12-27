@@ -15,7 +15,7 @@
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     
     <!-- Custom styles for this template -->
-    
+    <link rel="icon" type="image/png" href="dist/img/CAS-1.png">
   </head> 
   <body class="text-center">
   
@@ -23,7 +23,7 @@
       <main class="form-signin w-100 m-auto">
         <form action="{{ route('auth.login.post') }}" method="POST">
           @csrf
-          <img class="mb-4" src="dist/img/AdminLTELogo.png" alt="" width="72" height="57">
+          <img class="mb-4" src="dist/img/CAS-1.png" alt="" width="250" height="57">
           <h1 class="h3 mb-3 fw-normal">Please Login</h1>
           
           <div class="form-floating">

@@ -19,15 +19,15 @@ class Barang extends Model
 
 
 
-    public function barang_masuk()
+    public function barang_masuks()
     {
         return $this->hasMany(Barang_masuk::class, 'id');
         // return $this->belongsTo(Barang_masuk::class, 'barang_id');
     }
 
-    public function barang_keluar()
+    public function barang_keluars()
     {
-        return $this->hasMany(Barang_masuk::class, 'id');
+        return $this->hasMany(Barang_keluar::class, 'id');
         // return $this->belongsTo(Barang_masuk::class, 'barang_id');
     }
 

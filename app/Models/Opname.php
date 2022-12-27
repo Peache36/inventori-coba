@@ -24,8 +24,13 @@ class Opname extends Model
         return $this->hasMany(Riwayat::class);
     }
 
-
     public function barangs()
+    {
+        return $this->belongsTo(Barang::class, 'barang_id');
+        // return $this->hasMany(Barang::class);
+    }
+
+    public function keluars()
     {
         return $this->belongsTo(Barang::class, 'barang_id');
         // return $this->hasMany(Barang::class);

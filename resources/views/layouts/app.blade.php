@@ -27,6 +27,8 @@
   <link rel="stylesheet" href="{{ asset("plugins/summernote/summernote-bs4.min.css") }}">
 
   <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap4.min.css"> 
+
+  <link rel="icon" type="image/png" href="dist/img/CAS-1.png">
   
 </head>
 <body class="hold-transition sidebar-mini">
@@ -34,12 +36,10 @@
 
   <!-- Preloader -->
   <div class="preloader flex-column justify-content-center align-items-center">
-    <img class="animation__shake" src="{{ asset("dist/img/AdminLTELogo.png") }}" alt="AdminLTELogo" height="60" width="60">
+    <img class="animation__shake" src="{{ asset("dist/img/CAS-1.png") }}" alt="AdminLTELogo" height="60" width="150">
   </div>
 
   <!-- Navbar -->
-  
-  
     <nav class="main-header navbar navbar-expand navbar-white navbar-light">
       <ul class="navbar-nav">
         <li class="nav-item">
@@ -49,7 +49,7 @@
 
         <ul class="navbar-nav ml-auto mb-1">
           <a a class="nav-link dropdown-toggle" href="javascript:void(0)" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <img src="{{ asset("dist/img/user2-160x160.jpg") }}" class="img-circle elevation-2" alt="User Image" class="rounded-circle" width="40">
+            <img src="{{ asset("dist/img/user2-160x160.jpg") }}" class="img-circle elevation-2" alt="User Image" class="rounded-circle" width="35">
             <span class="ml-2 d-none d-lg-inline-block"><span>Hello,</span> <span class="text-dark">{{ \Illuminate\Support\Str::words(auth()->user()->name, 2, '') }}</span> <i data-feather="chevron-down" class="svg-icon"></i></span>
           </a>
           <div class="dropdown-menu dropdown-menu-right user-dd animated flipInY">
@@ -71,8 +71,8 @@
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link">
-      <img src="{{ asset("dist/img/AdminLTELogo.png") }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+    <a href="{{ route("dashborard.index") }}" class="brand-link">
+      <img src="{{ asset("dist/img/CAS-1.png") }}" alt="AdminLTE Logo" class="icon"  height="15">
       <span class="brand-text font-weight-light">FORMARI</span>
     </a>
 
